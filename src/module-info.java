@@ -1,2 +1,9 @@
-module Softwaretechnik_Aufgabe_01 {
+/**
+ * 
+ */
+/**
+ * @author Daniel
+ *
+ */
+module Metrik {
 }
