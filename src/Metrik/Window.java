@@ -4,9 +4,6 @@ import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Ellipse2D.Float;
 import java.awt.event.*;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
@@ -30,11 +27,6 @@ public class Window extends Frame implements MouseListener {
 		}
 	}
 
-//	@Override
-//	public void paint(Graphics g) {
-//		Graphics2D g2 = (Graphics2D) g;
-//	}
-
 	public void paint(Graphics g, int x, int y) {
 		Graphics2D g2 = (Graphics2D) g;
 		if (circlecount == 2) {
@@ -45,7 +37,7 @@ public class Window extends Frame implements MouseListener {
 		} else {
 			System.out.println("Kreis " + ++circlecount);
 			//X und Y werden um die Hälfte der Größe des Kreises subtrahiert, damit der Mittelpunkt des Kreises genau auf dem Mauszeiger liegt
-			g2.drawOval(x - 25, y - 25, 50, 50);
+			g2.drawRect(x - 25, y - 25, 50, 50);
 		}
 	}
 
