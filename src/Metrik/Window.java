@@ -21,6 +21,7 @@ public class Window extends Frame implements MouseListener, WindowListener {
 	Dialog dialog;
 	MenuBar mb = new MenuBar();
 	Menu menu2;
+	int[][] circlecoords = new int[2][2];
 
 	public Window() {
 		// Mouse- und Windowlistener für später hinzufügen
@@ -30,7 +31,7 @@ public class Window extends Frame implements MouseListener, WindowListener {
 		// Fenster konfigurieren und anzeigen
 		setSize(500, 500);
 		setVisible(true);
-		setTitle("Metrik Version 1.2");
+		setTitle("Metrik Version 1.2.1");
 
 		// Menüleiste anlegen, MenuItems und Menu anlegen und sichtbare Namen zuweisen
 
@@ -161,12 +162,26 @@ public class Window extends Frame implements MouseListener, WindowListener {
 		if (circlecount == 2) {
 			clear(g2);
 			circlecount = 0;
+			
+			circlecoords[0][0] = 0;
+			circlecoords[0][1] = 0;
+			circlecoords[1][0] = 0;
+			circlecoords[1][1] = 0;
 		} else {
+			circlecoords[circlecount][0] = x;
+			circlecoords[circlecount][1] = y;
 			circlecount++;
 			// X und Y werden um die Hälfte des Radius des Kreises subtrahiert, damit der
 			// Mittelpunkt des Kreises genau auf dem Mauszeiger liegt
 			g2.drawOval(x - (radius / 2), y - (radius / 2), radius, radius);
 			g2.drawString("Kreis: " + circlecount + ", X: " + x + ", Y: " + y, 20, 50 + (circlecount * 20));
+			
+			if (circlecount == 2) {
+				int abstandx = Math.abs(circlecoords[0][0]) - Math.abs(circlecoords[1][0]);
+				int abstandy = Math.abs(circlecoords[0][1]) - Math.abs(circlecoords[1][1]);
+				g2.drawString("Abstand in X: " + Math.abs(abstandx) + "", 20, 50 + (circlecount * 30));
+				g2.drawString("Abstand in Y: " + Math.abs(abstandy) + "", 20, 50 + (circlecount * 40));
+			}
 		}
 	}
 
