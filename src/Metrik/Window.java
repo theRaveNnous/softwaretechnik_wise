@@ -15,6 +15,8 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
 public class Window extends Frame implements MouseListener,WindowListener {
+
+	private static final long serialVersionUID = 1L;
 	int circlecount = 0;
 	Color color = Color.white;
 
@@ -116,10 +118,7 @@ public class Window extends Frame implements MouseListener,WindowListener {
 	
 	public void clear(Graphics2D g2) {
 		//Setze Farbe zum Zeichnen auf die aktuelle Hintergrundfarbe und zeichne ein ausgefülltes Rechteck auf größe des Bildschirms
-//		g2.setColor(color);
-//		g2.fillRect(0, 0, 1920, 1080);
-//		g2.setColor(Color.black);
-		setBackground(Color.white);
+		setBackground(Color.magenta);
 		setBackground(color);
 		
 	}
