@@ -21,6 +21,7 @@ public class Window extends Frame implements MouseListener, WindowListener {
 	Dialog dialog;
 	MenuBar mb = new MenuBar();
 	Menu menu2;
+	int[][] circlecoords = new int[2][2];
 
 	public Window() {
 		// Mouse- und Windowlistener für später hinzufügen
@@ -117,7 +118,7 @@ public class Window extends Frame implements MouseListener, WindowListener {
 	ActionListener aliRadius = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			//Dialogfeld 
+			// Dialogfeld
 			dialog = new Dialog(null, true);
 			dialog.setLayout(new FlowLayout());
 //			dialog.setModal(true);
@@ -162,11 +163,16 @@ public class Window extends Frame implements MouseListener, WindowListener {
 			clear(g2);
 			circlecount = 0;
 		} else {
+			circlecoords[circlecount][0] = x;
+			circlecoords[circlecount][1] = y;
 			circlecount++;
 			// X und Y werden um die Hälfte des Radius des Kreises subtrahiert, damit der
 			// Mittelpunkt des Kreises genau auf dem Mauszeiger liegt
 			g2.drawOval(x - (radius / 2), y - (radius / 2), radius, radius);
 			g2.drawString("Kreis: " + circlecount + ", X: " + x + ", Y: " + y, 20, 50 + (circlecount * 20));
+			if (circlecount == 2) {
+				g2.drawLine(circlecoords[0][0], circlecoords[0][1], circlecoords[1][0], circlecoords[1][1]);
+			}
 		}
 	}
 
